@@ -6,8 +6,13 @@ sudo apt install mariadb-server -y
 
 echo
 echo "All installations completed"
+read -p "Would you like to set up MariaDB now? (y/n): " -n 1 -r
+
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
+fi
+
 echo "Time to set up MariaDB!"
 echo
 
 sudo mysql_secure_installation
-
