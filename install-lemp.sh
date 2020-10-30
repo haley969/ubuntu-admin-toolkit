@@ -55,7 +55,7 @@ echo
 echo "Installing PHP"
 echo
 
-sudo apt install php-fpm php-mysql php-curl php-gd php-intl php-mbstring php-soap php-xml php-xmlrpc php-zip -y
+sudo apt install php-fpm php-mysql php-curl php-gd php-intl php-mbstring php-soap php-xml php-xmlrpc php-zip php-bcmath php-imagick -y
 
 echo
 echo "Installing Certbot"
