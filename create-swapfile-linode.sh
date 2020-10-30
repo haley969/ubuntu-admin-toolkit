@@ -1,5 +1,6 @@
 echo
 echo "Welcome to swap file creator"
+echo "This script will unmount Linode's default swap disk and replace it with a swap file"
 echo "https://github.com/nepgeargo/ubuntu-admin-toolkit"
 echo "Here is the amount of memory and swap you have:"
 echo
@@ -18,6 +19,17 @@ if [[ -f /swapfile ]]; then
     echo
     [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
 fi
+
+echo
+echo "This script will UNMOUNT /dev/sdb. Do you want to continue? (y/n): " -n 1 -r
+
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
+fi
+
+swapoff /dev/sdb
+umount /dev/sdb
+sed '\?^/dev/sdb?d' /etc/fstab
 
 echo
 echo "This script creates a swap file and uses it as your swap"
