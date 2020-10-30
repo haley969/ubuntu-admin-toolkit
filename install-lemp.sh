@@ -1,4 +1,5 @@
 SECRET_FILE=~/.secrets/certbot/cloudflare.ini
+SECRET_PATH=~/.secrets/certbot
 
 echo
 echo "Welcome to the LEMP Stack Installer"
@@ -10,6 +11,7 @@ echo "https://github.com/nepgeargo/ubuntu-admin-toolkit"
 if [[ ! -f "$SECRET_FILE" ]]; then
     echo "Please create a secret file containing your Cloudflare API token at $SECRET_FILE"
     echo "For more information visit https://certbot-dns-cloudflare.readthedocs.io/en/stable/"
+    mkdir "$SECRET_PATH"
     [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
 fi
 
