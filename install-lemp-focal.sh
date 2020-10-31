@@ -2,8 +2,8 @@ SECRET_FILE=~/.secrets/certbot/cloudflare.ini
 SECRET_PATH=~/.secrets/certbot
 
 echo
-echo "Welcome to the Certbot Installer"
-echo "This script will install Let's Encrypt certificates using Cloudflare DNS verification"
+echo "Welcome to the LEMP Stack Installer"
+echo "This script will also install Let's Encrypt certificates using Cloudflare DNS verification"
 echo "Visit the EFF at https://certbot.eff.org"
 echo "https://github.com/nepgeargo/ubuntu-admin-toolkit"
 
@@ -40,6 +40,26 @@ sudo snap install core
 sudo snap refresh core
 sudo apt-get install software-properties-common -y
 
+echo "Installing MariaDB 10.5"
+echo
+
+sudo apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
+sudo add-apt-repository 'deb [arch=amd64,arm64,ppc64el] https://mirror.rackspace.com/mariadb/repo/10.5/ubuntu focal main'
+sudo apt update
+sudo apt install mariadb-server -y
+
+echo
+echo "Installing NGINX"
+echo
+
+sudo apt install nginx -y
+
+echo
+echo "Installing PHP"
+echo
+
+sudo apt install php-fpm php-mysql php-curl php-gd php-intl php-mbstring php-soap php-xml php-xmlrpc php-zip php-bcmath php-imagick -y
+
 echo
 echo "Installing Certbot"
 echo
@@ -62,3 +82,17 @@ certbot certonly \
 echo "Testing Certbot renewal"
 echo
 sudo certbot renew --dry-run
+
+echo
+echo "All installations completed"
+read -p "Would you like to set up MariaDB now? (y/n): " -n 1 -r
+echo
+
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
+fi
+
+echo "Time to set up MariaDB!"
+echo
+
+sudo mysql_secure_installation

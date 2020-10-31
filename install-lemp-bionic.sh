@@ -11,7 +11,7 @@ echo "https://github.com/nepgeargo/ubuntu-admin-toolkit"
 if [[ ! -f "$SECRET_FILE" ]]; then
     echo "Please create a secret file containing your Cloudflare API token at $SECRET_FILE"
     echo "For more information visit https://certbot-dns-cloudflare.readthedocs.io/en/stable/"
-    mkdir "$SECRET_PATH"
+    mkdir "$SECRET_PATH" -p
     [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
 fi
 
@@ -25,6 +25,7 @@ read -p "What's your hostname (not FQDN)?: " HOST_NAME
 # Ask for confirmation
 echo
 read -p "Certificates will be issued for $ROOT_DOMAIN, *.$ROOT_DOMAIN, *.$HOST_NAME.$ROOT_DOMAIN. Would you like to continue? (y/n): " -n 1 -r
+echo
 
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
     [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
@@ -43,7 +44,7 @@ echo "Installing MariaDB 10.5"
 echo
 
 sudo apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
-sudo add-apt-repository 'deb [arch=amd64,arm64,ppc64el] https://mirror.rackspace.com/mariadb/repo/10.5/ubuntu focal main'
+sudo add-apt-repository 'deb [arch=amd64,arm64,ppc64el] https://mirror.rackspace.com/mariadb/repo/10.5/ubuntu bionic main'
 sudo apt update
 sudo apt install mariadb-server -y
 
@@ -85,6 +86,7 @@ sudo certbot renew --dry-run
 echo
 echo "All installations completed"
 read -p "Would you like to set up MariaDB now? (y/n): " -n 1 -r
+echo
 
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
     [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1

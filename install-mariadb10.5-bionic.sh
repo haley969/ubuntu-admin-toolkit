@@ -7,6 +7,7 @@ sudo apt install mariadb-server -y
 echo
 echo "All installations completed"
 read -p "Would you like to set up MariaDB now? (y/n): " -n 1 -r
+echo
 
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
     [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
