@@ -3,6 +3,8 @@ echo "Welcome to Webmin installer"
 echo "https://github.com/nepgeargo/ubuntu-admin-toolkit"
 echo
 
+read -p "From what FQDN will you access Webmin with? (e.g. webmin.hostname.example.com): " FQDN
+
 echo >>/etc/apt/sources.list
 echo "# START ubuntu-admin-toolkit" >>/etc/apt/sources.list
 echo "# https://github.com/nepgeargo/ubuntu-admin-toolkit" >>/etc/apt/sources.list
@@ -17,3 +19,5 @@ apt update
 apt install apt-transport-https -y
 apt update
 apt install webmin -y
+
+echo "referers=$FQDN" >>/etc/webmin/config

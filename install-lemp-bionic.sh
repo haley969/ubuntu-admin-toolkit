@@ -9,9 +9,11 @@ echo "https://github.com/nepgeargo/ubuntu-admin-toolkit"
 
 # Check the existence of Cloudflare API token secret file
 if [[ ! -f "$SECRET_FILE" ]]; then
-    echo "Please create a secret file containing your Cloudflare API token at $SECRET_FILE"
+    echo "Please modify the secret file at $SECRET_FILE so it contains your Cloudflare API token"
     echo "For more information visit https://certbot-dns-cloudflare.readthedocs.io/en/stable/"
     mkdir "$SECRET_PATH" -p
+    touch "$SECRET_FILE"
+    chmod 600 "$SECRET_FILE"
     [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
 fi
 
@@ -47,6 +49,12 @@ sudo apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.a
 sudo add-apt-repository 'deb [arch=amd64,arm64,ppc64el] https://mirror.rackspace.com/mariadb/repo/10.5/ubuntu bionic main'
 sudo apt update
 sudo apt install mariadb-server -y
+
+echo "Installing PhpMyAdmin"
+echo
+
+sudo apt install phpmyadmin -y
+sudo ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
 
 echo
 echo "Installing NGINX"
