@@ -21,7 +21,7 @@ if [[ -f /swapfile ]]; then
 fi
 
 echo
-echo "This script will UNMOUNT /dev/sdb. Do you want to continue? (y/n): " -n 1 -r
+read -p "This script will UNMOUNT /dev/sdb. Do you want to continue? (y/n): " -n 1 -r
 
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
     [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
