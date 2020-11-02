@@ -42,6 +42,7 @@ sudo snap install core
 sudo snap refresh core
 sudo apt-get install software-properties-common -y
 
+echo
 echo "Installing MariaDB 10.5"
 echo
 
@@ -50,6 +51,7 @@ sudo add-apt-repository 'deb [arch=amd64,arm64,ppc64el] https://mirror.rackspace
 sudo apt update
 sudo apt install mariadb-server -y
 
+echo
 echo "Installing PhpMyAdmin"
 echo
 
