@@ -52,13 +52,6 @@ sudo apt update
 sudo apt install mariadb-server -y
 
 echo
-echo "Installing PhpMyAdmin"
-echo
-
-sudo apt install phpmyadmin -y
-sudo ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
-
-echo
 echo "Installing NGINX"
 echo
 
@@ -69,6 +62,13 @@ echo "Installing PHP"
 echo
 
 sudo apt install php-fpm php-mysql php-curl php-gd php-intl php-mbstring php-soap php-xml php-xmlrpc php-zip php-bcmath php-imagick -y
+
+echo
+echo "Installing PhpMyAdmin"
+echo
+
+sudo apt install phpmyadmin -y
+sudo ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
 
 echo
 echo "Installing Certbot"

@@ -2,7 +2,7 @@ SECRET_FILE=~/.secrets/certbot/cloudflare.ini
 SECRET_PATH=~/.secrets/certbot
 
 echo
-echo "Welcome to the LEMP Stack Installer"
+echo "Welcome to the NGINX & PHP Installer"
 echo "This script will also install Let's Encrypt certificates using Cloudflare DNS verification"
 echo "Visit the EFF at https://certbot.eff.org"
 echo "https://github.com/nepgeargo/ubuntu-admin-toolkit"
@@ -43,15 +43,6 @@ sudo snap refresh core
 sudo apt-get install software-properties-common -y
 
 echo
-echo "Installing MariaDB 10.5"
-echo
-
-sudo apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
-sudo add-apt-repository 'deb [arch=amd64,arm64,ppc64el] https://mariadb.mirror.digitalpacific.com.au/repo/10.5/ubuntu focal main'
-sudo apt update
-sudo apt install mariadb-server -y
-
-echo
 echo "Installing NGINX"
 echo
 
@@ -62,13 +53,6 @@ echo "Installing PHP"
 echo
 
 sudo apt install php-fpm php-mysql php-curl php-gd php-intl php-mbstring php-soap php-xml php-xmlrpc php-zip php-bcmath php-imagick -y
-
-echo
-echo "Installing PhpMyAdmin"
-echo
-
-sudo apt install phpmyadmin -y
-sudo ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
 
 echo
 echo "Installing Certbot"
