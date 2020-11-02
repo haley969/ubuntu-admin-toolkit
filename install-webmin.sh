@@ -21,3 +21,6 @@ apt update
 apt install webmin -y
 
 echo "referers=$FQDN" >>/etc/webmin/config
+echo "trust_real_ip=1" >>/etc/webmin/miniserv.conf
+
+service webmin restart
