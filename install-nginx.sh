@@ -5,6 +5,7 @@ echo
 echo "Welcome to the NGINX & PHP Installer"
 echo
 
+. scripts/check-certbot-secret.sh
 . scripts/config-certbot.sh
 
 sudo apt update
