@@ -1,3 +1,6 @@
+RED='\033[0;31m'
+NC='\033[0m'
+
 SECRET_FILE=/root/.secrets/certbot/cloudflare.ini
 SECRET_PATH=/root/.secrets/certbot
 
