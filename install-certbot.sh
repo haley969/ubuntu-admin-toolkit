@@ -19,6 +19,7 @@ fi
 
 # Ask for domain names
 echo "This information will be used for Let's Encrypt verification"
+read -p "What is your email address (used for urgent renewal and security notices)?: " ROOT_DOMAIN
 read -p "What's your root domain name?: " ROOT_DOMAIN
 echo "It is suggested that your hostname be unique, easily identifiable, and unrelated to the host's main purpose"
 echo "Hostname subdomains can be used for internal or testing purposes"
@@ -60,7 +61,10 @@ certbot certonly \
 --dns-cloudflare-credentials ~/.secrets/certbot/cloudflare.ini \
 -d $ROOT_DOMAIN \
 -d *.$ROOT_DOMAIN \
--d *.$HOST_NAME.$ROOT_DOMAIN
+-d *.$HOST_NAME.$ROOT_DOMAIN \
+-m $ADMIN_EMAIL \
+--agree-tos \
+--non-interactive
 
 echo "Testing Certbot renewal"
 echo
