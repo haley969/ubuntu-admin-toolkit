@@ -38,6 +38,7 @@ echo "Installing prerequesites"
 echo
 
 sudo apt update
+sudo apt install snapd -y
 sudo snap install core
 sudo snap refresh core
 sudo apt-get install software-properties-common -y
@@ -55,11 +56,11 @@ sudo snap install certbot-dns-cloudflare
 echo
 echo "Requesting certificates"
 certbot certonly \
-    --dns-cloudflare \
-    --dns-cloudflare-credentials ~/.secrets/certbot/cloudflare.ini \
-    -d $ROOT_DOMAIN \
-    -d *.$ROOT_DOMAIN \
-    -d *.$HOST_NAME.$ROOT_DOMAIN
+--dns-cloudflare \
+--dns-cloudflare-credentials ~/.secrets/certbot/cloudflare.ini \
+-d $ROOT_DOMAIN \
+-d *.$ROOT_DOMAIN \
+-d *.$HOST_NAME.$ROOT_DOMAIN
 
 echo "Testing Certbot renewal"
 echo
