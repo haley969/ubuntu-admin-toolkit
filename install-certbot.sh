@@ -56,6 +56,7 @@ sudo snap install certbot-dns-cloudflare
 echo
 echo "Requesting certificates"
 certbot certonly \
+-n \
 --dns-cloudflare \
 --dns-cloudflare-credentials ~/.secrets/certbot/cloudflare.ini \
 --agree-tos \
