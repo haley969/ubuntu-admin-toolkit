@@ -11,6 +11,8 @@ echo "https://github.com/nepgeargo/debian-admin-toolkit"
 # Check the existence of Cloudflare API token secret file
 if [[ ! -f "$SECRET_FILE" ]]; then
     echo "Please modify the secret file at $SECRET_FILE so it contains your Cloudflare API token"
+    echo "You can create an API token at https://dash.cloudflare.com/profile/api-tokens"
+    echo "Choose \x22Edit Zone DNS\x22 to create a token for Certbot"
     mkdir "$SECRET_PATH" -p
     touch "$SECRET_FILE"
     chmod 600 "$SECRET_FILE"
