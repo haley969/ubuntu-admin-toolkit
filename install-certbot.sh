@@ -5,12 +5,12 @@ echo
 echo "Welcome to the Certbot Installer"
 echo "This script will install Let's Encrypt certificates using Cloudflare DNS verification"
 echo "Visit the EFF at https://certbot.eff.org"
+echo "For more information on certbot-dns-cloudflare visit https://certbot-dns-cloudflare.readthedocs.io/en/stable/"
 echo "https://github.com/nepgeargo/debian-admin-toolkit"
 
 # Check the existence of Cloudflare API token secret file
 if [[ ! -f "$SECRET_FILE" ]]; then
     echo "Please modify the secret file at $SECRET_FILE so it contains your Cloudflare API token"
-    echo "For more information visit https://certbot-dns-cloudflare.readthedocs.io/en/stable/"
     mkdir "$SECRET_PATH" -p
     touch "$SECRET_FILE"
     chmod 600 "$SECRET_FILE"
