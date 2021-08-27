@@ -20,14 +20,14 @@ fi
 # Ask for domain names
 echo "This information will be used for Let's Encrypt verification"
 read -p "What's your root domain name?: " ROOT_DOMAIN
-echo "It is suggested that your hostname be unique, easily identifiable, and unrelated to the host's main purpose"
-echo "Hostname subdomains can be used for internal or testing purposes"
-read -p "What's your hostname (not FQDN)?: " HOST_NAME
+#echo "It is suggested that your hostname be unique, easily identifiable, and unrelated to the host's main purpose"
+#echo "Hostname subdomains can be used for internal or testing purposes"
+#read -p "What's your hostname (not FQDN)?: " HOST_NAME
 read -p "Enter email address (used for urgent renewal and security notices): " EMAIL_ADDRESS
 
 # Ask for confirmation
 echo
-read -p "Certificates will be issued for $ROOT_DOMAIN, *.$ROOT_DOMAIN, *.$HOST_NAME.$ROOT_DOMAIN. Would you like to continue? (y/n): " -n 1 -r
+read -p "Certificates will be issued for $ROOT_DOMAIN, and *.$ROOT_DOMAIN. Would you like to continue? (y/n): " -n 1 -r
 echo
 
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
@@ -62,8 +62,8 @@ certbot certonly \
 --agree-tos \
 -m $EMAIL_ADDRESS \
 -d $ROOT_DOMAIN \
--d *.$ROOT_DOMAIN \
--d *.$HOST_NAME.$ROOT_DOMAIN
+-d *.$ROOT_DOMAIN
+#-d *.$HOST_NAME.$ROOT_DOMAIN
 
 echo "Testing Certbot renewal"
 echo
