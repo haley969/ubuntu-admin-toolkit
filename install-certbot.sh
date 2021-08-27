@@ -27,7 +27,7 @@ read -p "Enter email address (used for urgent renewal and security notices): " E
 
 # Ask for confirmation
 echo
-read -p "Certificates will be issued for $ROOT_DOMAIN, and *.$ROOT_DOMAIN. Would you like to continue? (y/n): " -n 1 -r
+read -p "Certificates will be issued for $ROOT_DOMAIN and *.$ROOT_DOMAIN. Would you like to continue? (y/n): " -n 1 -r
 echo
 
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
